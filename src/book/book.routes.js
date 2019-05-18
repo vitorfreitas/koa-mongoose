@@ -1,10 +1,11 @@
 const KoaRouter = require("koa-router");
-const { get } = require("./book.controller");
+const { getBooks, postBook } = require("./book.controller");
 
 const router = KoaRouter({
   prefix: "/api/books"
 });
 
-router.get("/", get);
+router.get("/", getBooks);
+router.post("/", postBook);
 
 module.exports = router;

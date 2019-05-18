@@ -1,6 +1,17 @@
 const Book = require("./book.model");
 
-const get = async ctx => {
+const postBook = async ctx => {
+  try {
+    const { name, author, isbn } = ctx.request.body;
+    const book = new Book({ name, author, isbn });
+    await book.save();
+    ctx.body = book;
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+const getBooks = async ctx => {
   try {
     const books = await Book.find();
     ctx.body = books;
@@ -9,4 +20,4 @@ const get = async ctx => {
   }
 };
 
-module.exports = { get };
+module.exports = { getBooks, postBook };

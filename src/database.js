@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const database = require("../credentials/database.json");
+const { mongoUrl } = require("../credentials/database.json");
 
 const setupMongodb = () => {
   mongoose.connect(
-    "mongodb+srv://vitor:adm@cluster0-fpltx.mongodb.net/koa",
+    mongoUrl,
     { useNewUrlParser: true }
   );
 

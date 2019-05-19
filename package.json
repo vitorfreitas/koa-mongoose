@@ -6,7 +6,8 @@
   "author": "Vitor Lima de Freitas",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

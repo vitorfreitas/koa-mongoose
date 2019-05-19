@@ -7,7 +7,21 @@ const postBook = async ctx => {
     await book.save();
     ctx.body = book;
   } catch (err) {
-    console.warn(err);
+    ctx.body = err.message;
+  }
+};
+
+const putBook = async ctx => {
+  try {
+    const { id } = ctx.params;
+    const book = await Book.findOneAndUpdate(
+      { _id: id },
+      { ...ctx.request.body },
+      { new: true }
+    );
+    ctx.body = book;
+  } catch (err) {
+    ctx.body = err.message;
   }
 };
 
@@ -16,8 +30,8 @@ const getBooks = async ctx => {
     const books = await Book.find();
     ctx.body = books;
   } catch (err) {
-    console.warn(err);
+    ctx.body = err.message;
   }
 };
 
-module.exports = { getBooks, postBook };
+module.exports = { getBooks, postBook, putBook };

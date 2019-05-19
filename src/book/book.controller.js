@@ -25,6 +25,16 @@ const putBook = async ctx => {
   }
 };
 
+const removeBook = async ctx => {
+  try {
+    const { id } = ctx.params;
+    const book = await Book.findByIdAndDelete(id);
+    ctx.body = book;
+  } catch (err) {
+    ctx.body = err.message;
+  }
+};
+
 const getBooks = async ctx => {
   try {
     const books = await Book.find();
@@ -34,4 +44,4 @@ const getBooks = async ctx => {
   }
 };
 
-module.exports = { getBooks, postBook, putBook };
+module.exports = { getBooks, postBook, putBook, removeBook };

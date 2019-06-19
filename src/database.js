@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { mongoUrl } = require('../credentials/database.json');
+const mongoUrl = process.env.MONGO_URL;
 
 const setupMongodb = () => {
   mongoose.connect(mongoUrl, { useNewUrlParser: true });

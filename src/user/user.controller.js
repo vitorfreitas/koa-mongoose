@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('./user.model');
-const secret = require('../../credentials/jwt.json').secretkey;
+const secret = process.env.JWT_SECRET;
 
 const verifyPassword = (password, hash) => bcrypt.compare(password, hash);
 

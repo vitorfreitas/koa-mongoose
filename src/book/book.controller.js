@@ -1,4 +1,4 @@
-const Book = require("./book.model");
+const Book = require('./book.model');
 
 const postBook = async ctx => {
   try {

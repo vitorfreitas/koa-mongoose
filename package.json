@@ -6,9 +6,9 @@
   "author": "Vitor Lima de Freitas",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon server.js",
+    "start:dev": "NODE_ENV=test nodemon server.js --ignore __tests__",
     "start": "node server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "NODE_ENV=test jest --detectOpenHandles"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

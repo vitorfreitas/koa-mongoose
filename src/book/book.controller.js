@@ -2,10 +2,19 @@ const Book = require('./book.model');
 
 const postBook = async ctx => {
   try {
-    const { name, author, isbn } = ctx.request.body;
-    const book = new Book({ name, author, isbn });
+    const bookExists = !!(await Book.findOne({
+      isbn: ctx.request.body.isbn
+    }));
+
+    if (bookExists) {
+      ctx.response.status = 401;
+      throw new Error('Book already exists');
+    }
+
+    const book = new Book(ctx.request.body);
     await book.save();
-    ctx.body = book;
+    ctx.response.status = 201;
+    ctx.body = { book };
   } catch (err) {
     ctx.body = err.message;
   }
@@ -19,7 +28,7 @@ const putBook = async ctx => {
       { ...ctx.request.body },
       { new: true }
     );
-    ctx.body = book;
+    ctx.body = { book };
   } catch (err) {
     ctx.body = err.message;
   }
@@ -28,8 +37,8 @@ const putBook = async ctx => {
 const removeBook = async ctx => {
   try {
     const { id } = ctx.params;
-    const book = await Book.findByIdAndDelete(id);
-    ctx.body = book;
+    await Book.findByIdAndDelete(id);
+    ctx.response.status = 204;
   } catch (err) {
     ctx.body = err.message;
   }
@@ -44,4 +53,13 @@ const getBooks = async ctx => {
   }
 };
 
-module.exports = { getBooks, postBook, putBook, removeBook };
+const getBook = async ctx => {
+  try {
+    const book = await Book.findById(ctx.params.id);
+    ctx.body = { book };
+  } catch (err) {
+    ctx.body = err.message;
+  }
+};
+
+module.exports = { getBooks, getBook, postBook, putBook, removeBook };

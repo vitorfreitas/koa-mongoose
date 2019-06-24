@@ -1,6 +1,7 @@
 const KoaRouter = require('koa-router');
 const {
   getBooks,
+  getBook,
   postBook,
   putBook,
   removeBook
@@ -11,6 +12,7 @@ const router = KoaRouter({
 });
 
 router.get('/', getBooks);
+router.get('/:id', getBook);
 router.post('/', postBook);
 router.put('/:id', putBook);
 router.delete('/:id', removeBook);

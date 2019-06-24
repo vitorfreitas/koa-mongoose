@@ -6,8 +6,9 @@
   "author": "Vitor Lima de Freitas",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon index.js",
-    "start": "node index.js"
+    "start:dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "jest --detectOpenHandles"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -16,7 +17,9 @@
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.19.0"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "semi": "off"
+    "semi": "off",
+    "no-undef": "off"
   }
 }

@@ -6,15 +6,16 @@ const {
   putBook,
   removeBook
 } = require('./book.controller');
+const authenticate = require('../auth/authenticate');
 
 const router = KoaRouter({
   prefix: '/api/books'
 });
 
-router.get('/', getBooks);
-router.get('/:id', getBook);
-router.post('/', postBook);
-router.put('/:id', putBook);
-router.delete('/:id', removeBook);
+router.get('/', authenticate, getBooks);
+router.get('/:id', authenticate, getBook);
+router.post('/', authenticate, postBook);
+router.put('/:id', authenticate, putBook);
+router.delete('/:id', authenticate, removeBook);
 
 module.exports = router;
